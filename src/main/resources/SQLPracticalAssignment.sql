@@ -53,24 +53,6 @@ INSERT INTO Sales (BookID, CustomerID, DateOfSale, QuantitySold, TotalPrice)
     (7, 4, '2023-12-21', 2, 24.90),
     (9, 5, '2023-04-04', 7, 61.16);
 
-SELECT
-    Books.Title AS TitleOfBook,
-    Customers.Name AS NameOfCustomer,
-    Sales.DateOfSale AS DateOfSale
-FROM
-    Sales
-    JOIN Books ON Sales.BookID = Books.BookID
-    JOIN Customers ON Sales.CustomerID = Customers.CustomerID;
-
-SELECT
-    Books.Genre,
-    COALESCE(SUM(Sales.TotalPrice), 0) AS TotalRPice
-FROM
-    Books
-    LEFT JOIN Sales ON Books.BookID = Sales.BookID
-GROUP BY
-    Books.Genre;
-
 
 CREATE OR REPLACE FUNCTION update_quantity_in_stock()
 RETURNS TRIGGER AS $$
